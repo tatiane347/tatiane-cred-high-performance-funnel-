@@ -1,0 +1,893 @@
+
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tatiane Cred | Crédito Estruturado Nascimento Solutions</title>
+    
+    <!-- Favicon dinâmico rosa neon para a aba do navegador -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ec4899' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='23 6 13.5 15.5 8.5 10.5 1 18'%3E%3C/polyline%3E%3Cpolyline points='17 6 23 6 23 12'%3E%3C/polyline%3E%3C/svg%3E">
+    
+    <!-- Tailwind CSS para os gradientes rosa e preto -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #000000; 
+            color: #ffffff; 
+        }
+        .bg-blur { 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px); 
+        }
+        .animate-fade-in { 
+            animation: fadeIn 0.4s ease-out forwards; 
+        }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(8px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+    </style>
+</head>
+<body class="selection:bg-pink-500 selection:text-white overflow-x-hidden bg-black">
+
+    <!-- Sistema de Notificação/Toast Customizado Premium -->
+    <div id="toastContainer" class="fixed top-24 left-1/2 -translate-x-1/2 z-[200] w-full max-w-sm px-4 pointer-events-none transition-all duration-300"></div>
+
+    <!-- Banner de Consentimento de Cookies (LGPD) -->
+    <div id="cookieBanner" class="fixed bottom-0 inset-x-0 z-[150] bg-zinc-950/95 border-t border-zinc-900 p-5 bg-blur animate-fade-in transition-all duration-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="space-y-1 text-center sm:text-left max-w-2xl">
+            <h4 class="text-xs font-black uppercase tracking-wider text-pink-500">Privacidade de Dados (LGPD)</h4>
+            <p class="text-[10px] text-zinc-400 leading-normal">
+                Utilizamos cookies e tecnologias semelhantes para garantir segurança de dados, analisar performance e personalizar a sua simulação de limite Tatiane Cred. Ao continuar navegando, concorda com os nossos Termos.
+            </p>
+        </div>
+        <button onclick="acceptCookies()" class="bg-pink-600 hover:bg-pink-500 text-white font-black text-[10px] uppercase tracking-wider px-6 py-3 rounded-xl transition-all active:scale-95 whitespace-nowrap">
+            Aceitar e Continuar
+        </button>
+    </div>
+
+    <!-- Menu Mobile Lateral -->
+    <div id="mobileMenu" class="fixed inset-0 z-[100] invisible transition-all duration-500">
+        <div class="absolute inset-0 bg-black/80 bg-blur opacity-0 transition-opacity duration-500" onclick="toggleMenu()"></div>
+        <div id="menuContent" class="absolute top-0 right-0 h-full w-72 bg-zinc-950 border-l border-pink-500/30 p-8 shadow-2xl translate-x-full transition-transform duration-500 flex flex-col justify-between">
+            <div class="space-y-10">
+                <button onclick="toggleMenu()" class="absolute top-6 right-6 text-zinc-400">
+                    <!-- Ícone de Fechar (X) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="flex items-center gap-3 mt-8">
+                    <div class="bg-gradient-to-tr from-pink-600 to-pink-400 p-2 rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                    </div>
+                    <span class="font-black text-xl tracking-tighter italic uppercase">TATIANE<span class="text-pink-500">CRED</span></span>
+                </div>
+                <nav class="flex flex-col gap-6 text-sm font-black uppercase tracking-widest italic">
+                    <button onclick="showPage('landing')" class="text-left hover:text-pink-500 py-2">Início</button>
+                    <button onclick="showPage('input')" class="text-left hover:text-pink-500 py-2">Simular</button>
+                    <button onclick="scrollToFaq()" class="text-left hover:text-pink-500 py-2">Dúvidas</button>
+                    <button onclick="showPage('contact')" class="text-left text-pink-500 py-2">Atendimento</button>
+                </nav>
+            </div>
+            
+            <!-- Redes Sociais no Menu Mobile -->
+            <div class="space-y-4">
+                <div class="flex gap-4 pt-4 border-t border-zinc-900">
+                    <a href="https://www.instagram.com/tatianesouza.assessoria?igsh=MWRwbjUxYnE1MWI4aQ==" target="_blank" rel="noreferrer" class="text-zinc-500 hover:text-pink-500 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/share/1GkjmcdbM2/" target="_blank" rel="noreferrer" class="text-zinc-500 hover:text-pink-500 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/tatiane-nascimento-68b0622bb?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noreferrer" class="text-zinc-500 hover:text-pink-500 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                </div>
+                <div class="text-[9px] text-zinc-600 font-bold tracking-widest uppercase">Nascimento Solutions</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão de Voltar ao Topo -->
+    <button id="backToTop" onclick="scrollToTop()" class="fixed bottom-6 left-6 z-50 bg-zinc-900/90 border border-pink-500/30 p-3 rounded-xl text-pink-500 backdrop-blur-md hidden transition-all shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+    </button>
+
+    <!-- WhatsApp Flutuante -->
+    <a href="https://wa.me/5511910526709?text=Olá%20Tatiane!%20Gostaria%20de%20saber%20mais%20sobre%20o%20limite%20de%20crédito%20da%20Tatiane%20Cred%20pela%20Nascimento%20Solutions." target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] p-4 rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-transform">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+    </a>
+
+    <!-- Header / Navbar -->
+    <nav class="relative z-50 bg-black/50 backdrop-blur-lg border-b border-zinc-900 sticky top-0">
+        <div class="max-w-7xl mx-auto px-5 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('landing')">
+                <div class="bg-gradient-to-tr from-pink-600 to-pink-400 p-2.5 rounded-xl shadow-[0_0_15px_rgba(236,72,153,0.3)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                </div>
+                <div>
+                    <span class="font-black text-lg tracking-tighter italic uppercase">TATIANE<span class="text-pink-500">CRED</span></span>
+                    <p class="hidden sm:block text-[8px] font-black uppercase text-zinc-500 tracking-[0.2em] leading-none">Nascimento Solutions</p>
+                </div>
+            </div>
+
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex items-center gap-8 text-[10px] font-black uppercase tracking-widest italic">
+                <button onclick="showPage('landing')" class="hover:text-pink-500 transition-colors">Início</button>
+                <button onclick="showPage('input')" class="hover:text-pink-500 transition-colors">Simular</button>
+                <button onclick="scrollToFaq()" class="hover:text-pink-500 transition-colors">Dúvidas</button>
+                <button onclick="showPage('contact')" class="bg-pink-600 px-5 py-2.5 rounded-full hover:bg-pink-500 transition-all shadow-lg">Atendimento</button>
+            </div>
+
+            <button onclick="toggleMenu()" class="md:hidden p-2 text-pink-500 bg-zinc-900/50 rounded-xl border border-zinc-800">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <div id="mainContainer">
+
+        <!-- ETAPA 1: LANDING PAGE -->
+        <section id="landing" class="page-section animate-fade-in">
+            <div class="px-6 py-12 md:py-24 max-w-7xl mx-auto flex flex-col items-center text-center space-y-8">
+                <div class="inline-flex items-center gap-2 bg-pink-500/10 border border-pink-500/20 px-4 py-2 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span class="text-[10px] font-bold text-pink-400 uppercase tracking-tight">Correspondente Bancário Homologado</span>
+                </div>
+                <h1 class="text-4xl md:text-7xl font-black leading-tight tracking-tighter uppercase italic max-w-4xl">
+                    IMPULSIONE SEU <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-400">CRÉDITO</span> COM ALTA PERFORMANCE.
+                </h1>
+                <p class="text-zinc-400 text-sm md:text-lg max-w-xl italic">
+                    A Nascimento Solutions utiliza inteligência avançada para liberar seu limite Tatiane Cred sem burocracia bancária.
+                </p>
+                <div class="w-full flex flex-col gap-3 max-w-xs pt-4">
+                    <button onclick="showPage('input')" class="w-full bg-pink-600 text-white font-black py-5 rounded-2xl flex items-center justify-center gap-3 shadow-lg active:scale-95 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 
+                        SIMULAR AGORA
+                    </button>
+                    <button onclick="showPage('contact')" class="w-full bg-zinc-900 border border-zinc-800 text-white font-black py-5 rounded-2xl flex items-center justify-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg> 
+                        SUPORTE DIRETO
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid de Estatísticas -->
+            <div class="px-5 py-8 max-w-7xl mx-auto">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                    <div class="bg-zinc-900/40 p-6 rounded-3xl border border-zinc-800 text-center">
+                        <p class="text-2xl font-black text-pink-500 tracking-tighter">+12k</p>
+                        <p class="text-[9px] font-black text-zinc-500 uppercase tracking-widest mt-1">Simulações</p>
+                    </div>
+                    <div class="bg-zinc-900/40 p-6 rounded-3xl border border-zinc-800 text-center">
+                        <p class="text-2xl font-black text-pink-500 tracking-tighter">R$ 5M</p>
+                        <p class="text-[9px] font-black text-zinc-500 uppercase tracking-widest mt-1">Intermediado</p>
+                    </div>
+                    <div class="bg-zinc-900/40 p-6 rounded-3xl border border-zinc-800 text-center">
+                        <p class="text-2xl font-black text-pink-500 tracking-tighter">98%</p>
+                        <p class="text-[9px] font-black text-zinc-500 uppercase tracking-widest mt-1">Aprovação</p>
+                    </div>
+                    <div class="bg-zinc-900/40 p-6 rounded-3xl border border-zinc-800 text-center">
+                        <p class="text-2xl font-black text-pink-500 tracking-tighter">100%</p>
+                        <p class="text-[9px] font-black text-zinc-500 uppercase tracking-widest mt-1">Seguro Bacen</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção de Prova Social de Alta Conversão (BDR/SDR) -->
+            <div class="px-5 py-12 max-w-7xl mx-auto space-y-8">
+                <h3 class="text-2xl font-black tracking-tighter uppercase italic text-center">Quem já contratou aprova</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-zinc-900/40 border border-zinc-800 p-6 rounded-3xl space-y-4">
+                        <div class="flex gap-1 text-pink-500">
+                            <!-- Estrelas de Classificação -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                        <p class="text-xs text-zinc-400 italic leading-relaxed">
+                            "A análise de limite pela IA foi muito rápida. Simulei minha renda e em poucos minutos recebi o feedback do meu limite Tatiane Cred. O suporte via WhatsApp me deu toda a segurança."
+                        </p>
+                        <p class="text-[10px] font-black uppercase text-white tracking-wider">Carlos Eduardo S. — Empresário</p>
+                    </div>
+                    <div class="bg-zinc-900/40 border border-zinc-800 p-6 rounded-3xl space-y-4">
+                        <div class="flex gap-1 text-pink-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                        <p class="text-xs text-zinc-400 italic leading-relaxed">
+                            "A Nascimento Solutions resolveu a minha necessidade de forma digital e rápida. O processo do Pix é transparente e recebi o TED na minha conta bancária em menos de duas horas!"
+                        </p>
+                        <p class="text-[10px] font-black uppercase text-white tracking-wider">Amanda Costa — Consultora</p>
+                    </div>
+                    <div class="bg-zinc-900/40 border border-zinc-800 p-6 rounded-3xl space-y-4">
+                        <div class="flex gap-1 text-pink-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                        <p class="text-xs text-zinc-400 italic leading-relaxed">
+                            "Achei excelente que o site siga as conformidades da LGPD e as normas do Banco Central. Segurança em primeiro lugar. Indico muito para quem busca desburocratização rápida."
+                        </p>
+                        <p class="text-[10px] font-black uppercase text-white tracking-wider">Bruno Henrique N. — Analista Tech</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção de Dúvidas (FAQ) -->
+            <div id="faqSection" class="px-5 py-12 max-w-3xl mx-auto space-y-8 scroll-mt-24">
+                <h3 class="text-2xl font-black tracking-tighter uppercase italic text-center">Dúvidas Frequentes</h3>
+                <div class="space-y-3">
+                    <!-- FAQ 1 -->
+                    <div class="bg-zinc-900/30 border border-zinc-900 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq(1)" class="w-full p-5 flex items-center justify-between text-left font-bold text-xs uppercase italic">
+                            <span>A Tatiane Cred é uma instituição financeira?</span>
+                            <span id="faqIcon-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                        </button>
+                        <div id="faqAnswer-1" class="hidden px-5 pb-5 text-[11px] text-zinc-400 border-t border-zinc-950 pt-4 leading-relaxed">
+                            Não. A Tatiane Cred, operada pela Nascimento Solutions, atua como Correspondente Bancário nos termos da Resolução CMN nº 4.935/2021.
+                        </div>
+                    </div>
+                    <!-- FAQ 2 -->
+                    <div class="bg-zinc-900/30 border border-zinc-900 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq(2)" class="w-full p-5 flex items-center justify-between text-left font-bold text-xs uppercase italic">
+                            <span>Existe alguma taxa cobrada antecipadamente?</span>
+                            <span id="faqIcon-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                        </button>
+                        <div id="faqAnswer-2" class="hidden px-5 pb-5 text-[11px] text-zinc-400 border-t border-zinc-950 pt-4 leading-relaxed">
+                            Absolutamente não. Nunca solicitamos depósitos antecipados para liberar crédito.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ETAPA 2: INPUT RENDA -->
+        <section id="input" class="page-section hidden animate-fade-in py-12 px-6">
+            <div class="max-w-md mx-auto bg-zinc-900 p-8 rounded-3xl border border-zinc-800 shadow-2xl">
+                <h3 class="text-xl font-black mb-6 tracking-tighter uppercase italic text-center">Análise de Perfil</h3>
+                <div class="space-y-6">
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-pink-500 uppercase tracking-widest ml-1 italic">Informe sua Renda Mensal Estimada</label>
+                        <div class="relative">
+                          <span class="absolute left-5 top-5 font-bold text-zinc-600">R$</span>
+                          <input id="rendaInput" type="text" placeholder="0,00" class="w-full p-5 pl-12 bg-black border border-zinc-800 rounded-2xl text-xl font-bold focus:border-pink-500 outline-none text-white transition-all">
+                        </div>
+                    </div>
+                    <button onclick="processAI()" class="w-full bg-pink-600 hover:bg-pink-500 text-white font-black py-5 rounded-2xl flex items-center justify-center gap-3 active:scale-95 transition-all text-sm uppercase tracking-wider">
+                        <span id="btnText">PROCESSAR COM IA</span>
+                        <svg id="btnLoader" class="animate-spin hidden" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y1="12"></line><line x1="18" y1="12" x2="22" y1="12"></line></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ETAPA 3: RESULTADO DA OFERTA -->
+        <section id="offer" class="page-section hidden animate-fade-in py-12 px-6 text-center max-w-md mx-auto space-y-8">
+            <div class="bg-zinc-900 p-8 rounded-[2.5rem] border border-pink-500/30 relative space-y-4">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-pink-600 text-[9px] font-black px-4 py-1 rounded-full uppercase italic">Oferta Liberada</div>
+                <p class="text-zinc-500 text-[10px] font-black uppercase tracking-widest">Limite Pré-Aprovado</p>
+                <h2 id="valorOferta" class="text-4xl md:text-5xl font-black tracking-tighter italic text-white leading-none">R$ 0,00</h2>
+                <div class="p-4 bg-black/40 rounded-2xl italic text-zinc-400 text-[11px] leading-relaxed">
+                    "Sua margem de crédito foi calculada com segurança pela Nascimento Solutions. Limite pronto para transferência imediata."
+                </div>
+            </div>
+            <button onclick="showPage('receiving_method')" class="w-full bg-pink-600 hover:bg-pink-500 text-white font-black py-5 rounded-3xl flex items-center justify-center gap-3 text-base shadow-xl active:scale-95 transition-all">
+                CONTRATAR LIMITE AGORA
+            </button>
+        </section>
+
+        <!-- ETAPA 4: SELEÇÃO DE DESTINO (RECEBIMENTO) -->
+        <section id="receiving_method" class="page-section hidden animate-fade-in py-12 px-6 max-w-md mx-auto space-y-6">
+            <div class="text-center">
+                <h3 class="text-2xl font-black tracking-tighter uppercase italic">Como prefere receber?</h3>
+                <p class="text-zinc-500 text-xs mt-1">Selecione o destino onde creditaremos seu saldo.</p>
+            </div>
+
+            <div class="space-y-3">
+                <!-- Pix -->
+                <div id="cardPix" onclick="selectMethod('pix')" class="method-card p-5 rounded-3xl border border-pink-500 bg-pink-500/10 cursor-pointer transition-all">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-pink-600 p-3 rounded-2xl text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        </div>
+                        <h4 class="font-black text-base">Pix Instantâneo (Cai na hora)</h4>
+                    </div>
+                    <div id="pixFields" class="mt-4 space-y-3">
+                        <!-- Validação interativa de CPF/Telefone/E-mail via classe CSS e Regex -->
+                        <input id="pixKeyInput" type="text" placeholder="CPF, Celular ou E-mail" class="w-full p-4 bg-black border border-zinc-800 rounded-2xl text-sm font-bold text-white outline-none focus:border-pink-500">
+                    </div>
+                </div>
+
+                <!-- TED -->
+                <div id="cardTed" onclick="selectMethod('ted')" class="method-card p-5 rounded-3xl border border-zinc-800 bg-zinc-900/60 cursor-pointer transition-all">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-zinc-800 p-3 rounded-2xl text-pink-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="16"></line><line x1="15" y1="22" x2="15" y2="16"></line></svg>
+                        </div>
+                        <h4 class="font-black text-base">TED / Conta Bancária</h4>
+                    </div>
+                    <div id="tedFields" class="mt-4 space-y-3 hidden">
+                        <input id="bankNameInput" type="text" placeholder="Nome do Banco" class="w-full p-4 bg-black border border-zinc-800 rounded-2xl text-sm text-white font-bold">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input id="bankAgencyInput" type="text" placeholder="Agência" maxlength="5" class="w-full p-4 bg-black border border-zinc-800 rounded-2xl text-sm text-white font-bold">
+                            <input id="bankAccountInput" type="text" placeholder="Conta com Dígito" class="w-full p-4 bg-black border border-zinc-800 rounded-2xl text-sm text-white font-bold">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="confirmDestination()" class="w-full bg-pink-600 hover:bg-pink-500 text-white font-black py-5 rounded-[2rem] flex items-center justify-center gap-3 shadow-lg active:scale-95 transition-all text-sm uppercase">
+                Confirmar e Avançar
+            </button>
+        </section>
+
+        <!-- ETAPA 5: CHECKOUT PIX -->
+        <section id="checkout" class="page-section hidden animate-fade-in py-12 px-6 max-w-md mx-auto space-y-8">
+            <h3 class="text-2xl font-black tracking-tighter text-center uppercase italic">Finalização Segura</h3>
+            <div class="bg-zinc-900/80 p-8 rounded-[3rem] border border-zinc-800 text-center space-y-6 shadow-2xl">
+                <div class="flex flex-col items-center gap-3">
+                    <div class="bg-pink-500 p-3 rounded-2xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M12 11h4v2h-4z"></path></svg>
+                    </div>
+                    <span class="font-black text-lg uppercase italic">Taxa de Adesão via Pix</span>
+                </div>
+                
+                <!-- Resumo dos dados de recebimento na tela de checkout -->
+                <div id="checkoutSummary" class="p-4 bg-zinc-950 border border-zinc-900 rounded-2xl text-left text-xs text-zinc-400 space-y-1">
+                    <!-- Gerado dinamicamente via JS -->
+                </div>
+
+                <p class="text-zinc-500 text-[10px] uppercase tracking-widest leading-normal">Copie a chave corporativa e realize o pagamento no seu banco</p>
+                <div class="bg-black p-4 rounded-xl border border-zinc-800 font-black text-pink-500 text-xs break-all select-all">
+                    tatianen25@gmail.com
+                </div>
+                <button onclick="copyPix()" class="w-full bg-white text-black hover:bg-zinc-200 font-black py-4 rounded-xl flex items-center justify-center gap-2 text-xs transition-all shadow-md">
+                    COPIAR CHAVE PIX
+                </button>
+            </div>
+        </section>
+
+        <!-- ETAPA 6: SUCESSO COPIA PIX -->
+        <section id="pix_success" class="page-section hidden animate-fade-in py-12 text-center space-y-6 max-w-xs mx-auto">
+            <div class="w-20 h-20 bg-white text-pink-600 rounded-full flex items-center justify-center mx-auto shadow-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <div class="space-y-2">
+                <h2 class="text-2xl font-black tracking-tighter uppercase italic">CHAVE COPIADA!</h2>
+                <p class="text-zinc-500 text-xs leading-relaxed italic">E-mail da Nascimento Solutions copiado com sucesso.</p>
+            </div>
+            <button onclick="showPage('success')" class="w-full bg-pink-600 text-white font-black py-4 rounded-xl">JÁ REALIZEI O PIX</button>
+        </section>
+
+        <!-- ETAPA 7: SUCESSO FINAL -->
+        <section id="success" class="page-section hidden animate-fade-in py-12 text-center space-y-6 max-w-xs mx-auto">
+            <div class="w-20 h-20 bg-green-500 text-black rounded-full flex items-center justify-center mx-auto shadow-lg shadow-green-500/10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <h2 id="successTitle" class="text-2xl font-black tracking-tighter italic uppercase leading-none">SOLICITAÇÃO RECEBIDA!</h2>
+            <p id="successDesc" class="text-zinc-400 text-xs leading-relaxed">A Nascimento Solutions iniciou a auditoria e o processamento técnico do seu limite Tatiane Cred.</p>
+            
+            <!-- Box Dinâmico com detalhes do TED e Mensagem de Sucesso específica -->
+            <div id="tedSuccessDetails" class="hidden bg-zinc-900 border border-zinc-800 p-5 rounded-3xl text-left space-y-3 mt-4">
+                <p class="text-pink-500 font-black text-[10px] uppercase tracking-widest">TED de Recebimento Agendado:</p>
+                <div class="space-y-1">
+                    <p class="text-white font-black text-xs" id="tedSuccessBank"></p>
+                    <p class="text-zinc-400 text-[10px]" id="tedSuccessAccount"></p>
+                </div>
+                <p class="text-green-400 text-[10px] font-black tracking-wide bg-green-500/10 border border-green-500/20 p-2.5 rounded-xl text-center">
+                    ✓ Saldo será creditado em sua conta em até 2 horas úteis!
+                </p>
+            </div>
+
+            <button onclick="showPage('landing')" class="text-pink-500 font-black uppercase text-[10px] tracking-widest underline underline-offset-4 block mx-auto pt-4">Voltar ao Início</button>
+        </section>
+
+        <!-- ATENDIMENTO -->
+        <section id="contact" class="page-section hidden animate-fade-in py-12 max-w-5xl mx-auto space-y-8">
+            <div class="text-center space-y-4">
+                <h2 class="text-2xl md:text-4xl font-black tracking-tighter uppercase italic leading-none">Atendimento</h2>
+                <p class="text-zinc-500 text-xs italic">Nascimento Solutions Suporte Comercial</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card WhatsApp -->
+                <a href="https://wa.me/5511910526709?text=Olá%20Tatiane!%20Gostaria%20de%20saber%20mais%20sobre%20o%20limite%20de%20crédito%20da%20Tatiane%20Cred%20pela%20Nascimento%20Solutions." target="_blank" class="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 flex items-center gap-4 active:scale-95 transition-all">
+                    <div class="bg-[#25D366]/10 p-3 rounded-xl text-[#25D366]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-[8px] font-black text-zinc-500 uppercase tracking-widest">WhatsApp Comercial</p>
+                        <p class="font-bold text-sm text-white">(11) 91052-6709</p>
+                    </div>
+                </a>
+
+                <!-- Card Email -->
+                <div class="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 flex items-center gap-4">
+                    <div class="bg-pink-500/10 p-3 rounded-xl text-pink-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </div>
+                    <div>
+                        <p class="text-[8px] font-black text-zinc-500 uppercase tracking-widest">E-mail Corporativo</p>
+                        <p class="font-bold text-sm text-white break-all">tatianen25@gmail.com</p>
+                    </div>
+                </div>
+
+                <!-- Redes Sociais no Atendimento -->
+                <div class="bg-zinc-900 p-6 rounded-3xl border border-zinc-800 flex flex-col justify-center space-y-2">
+                    <p class="text-[8px] font-black text-zinc-500 uppercase tracking-widest pl-1">Siga-nos nas Redes</p>
+                    <div class="flex gap-4 pl-1">
+                        <a href="https://www.instagram.com/tatianesouza.assessoria?igsh=MWRwbjUxYnE1MWI4aQ==" target="_blank" rel="noreferrer" class="bg-black/40 border border-zinc-800 p-2.5 rounded-xl text-zinc-500 hover:text-pink-500 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/share/1GkjmcdbM2/" target="_blank" rel="noreferrer" class="bg-black/40 border border-zinc-800 p-2.5 rounded-xl text-zinc-500 hover:text-pink-500 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/tatiane-nascimento-68b0622bb?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noreferrer" class="bg-black/40 border border-zinc-800 p-2.5 rounded-xl text-zinc-500 hover:text-pink-500 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRIVACIDADE, TERMOS E LGPD -->
+        <section id="privacy" class="page-section hidden animate-fade-in py-12 px-6 max-w-md mx-auto space-y-6">
+            <h2 class="text-2xl font-black uppercase italic text-pink-500">Política de Privacidade</h2>
+            <p class="text-zinc-400 text-xs leading-relaxed">A Nascimento Solutions protege seus dados de simulação de limite Tatiane Cred nos termos da lei de proteção de dados aplicável nacionalmente.</p>
+            <button onclick="showPage('landing')" class="bg-zinc-900 border border-zinc-800 text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-xl">Voltar</button>
+        </section>
+
+        <section id="terms" class="page-section hidden animate-fade-in py-12 px-6 max-w-md mx-auto space-y-6">
+            <h2 class="text-2xl font-black uppercase italic text-pink-500">Termos de Uso</h2>
+            <p class="text-zinc-400 text-xs leading-relaxed">Operamos exclusivamente como correspondente digital integrado para análise de margem e pré-aprovações sob demanda do cliente.</p>
+            <button onclick="showPage('landing')" class="bg-zinc-900 border border-zinc-800 text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-xl">Voltar</button>
+        </section>
+
+        <section id="lgpd" class="page-section hidden animate-fade-in py-12 px-6 max-w-md mx-auto space-y-6">
+            <h2 class="text-2xl font-black uppercase italic text-pink-500">Conformidade LGPD</h2>
+            <p class="text-zinc-400 text-xs leading-relaxed">Tratamento de dados 100% transparente, seguro e confidencial. Você pode solicitar a remoção ou revisão dos seus dados a qualquer momento em nossos canais oficiais.</p>
+            <button onclick="showPage('landing')" class="bg-zinc-900 border border-zinc-800 text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-xl">Voltar</button>
+        </section>
+
+    </div>
+
+    <!-- Rodapé com Selos e Informações Adicionais -->
+    <footer class="py-12 px-6 border-t border-zinc-900 bg-black mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col items-center gap-8">
+            <div class="flex items-center gap-2">
+                <div class="bg-pink-600 p-1.5 rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                </div>
+                <span class="font-black text-lg tracking-tighter italic uppercase">TATIANE<span class="text-pink-500">CRED</span></span>
+            </div>
+            
+            <div class="flex gap-6 text-[9px] font-black text-zinc-700 uppercase tracking-widest">
+                <button onclick="showPage('landing')" class="hover:text-pink-500">Início</button>
+                <button onclick="showPage('input')" class="hover:text-pink-500">Simular</button>
+                <button onclick="showPage('contact')" class="hover:text-pink-500">Atendimento</button>
+            </div>
+
+            <!-- Redes Sociais no Rodapé -->
+            <div class="flex gap-5">
+                <a href="https://www.instagram.com/tatianesouza.assessoria?igsh=MWRwbjUxYnE1MWI4aQ==" target="_blank" rel="noreferrer" class="text-zinc-500 hover:text-pink-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+                <a href="https://www.facebook.com/share/1GkjmcdbM2/" target="_blank" rel="noreferrer" class="text-zinc-500 hover:text-pink-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/tatiane-nascimento-68b0622bb?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noreferrer" class="text-zinc-500 hover:text-pink-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+            </div>
+
+            <!-- Selos Fiscais e de Segurança Digital -->
+            <div class="flex flex-wrap items-center justify-center gap-6 opacity-30">
+                <span class="border border-white/50 px-3 py-1 rounded text-[7px] font-black tracking-widest uppercase">Autorregulação Bancária</span>
+                <span class="border border-white/50 px-3 py-1 rounded text-[7px] font-black tracking-widest uppercase">SSL 256-Bit</span>
+                <span class="border border-white/50 px-3 py-1 rounded text-[7px] font-black tracking-widest uppercase">Norma CMN 4.935</span>
+            </div>
+
+            <div class="flex gap-4 text-[8px] font-bold uppercase tracking-wider text-zinc-600">
+                <button onclick="showPage('privacy')" class="hover:text-pink-500">Privacidade</button>
+                <button onclick="showPage('terms')" class="hover:text-pink-500">Termos</button>
+                <button onclick="showPage('lgpd')" class="hover:text-pink-500">LGPD</button>
+            </div>
+
+            <div class="text-[8px] text-zinc-800 text-center font-bold uppercase tracking-[0.2em] max-w-xs leading-relaxed">
+               © 2026 Nascimento Solutions • Tatiane Nascimento • Galaxy A10s Edition
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lógica JavaScript de Navegação Interativa -->
+    <script>
+        let receivingMethod = 'pix';
+
+        // Lógica de verificação/consentimento do Banner de Cookies
+        if (localStorage.getItem('cookiesAccepted')) {
+            document.getElementById('cookieBanner').classList.add('hidden');
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            const banner = document.getElementById('cookieBanner');
+            banner.classList.add('opacity-0', 'translate-y-4');
+            setTimeout(() => banner.classList.add('hidden'), 500);
+            showToast("Preferências de privacidade guardadas!", "success");
+        }
+
+        // Sistema de Notificações Toast Moderno (Proteção extra de Interface contra alert)
+        function showToast(message, type = 'error') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            
+            toast.className = "flex items-center gap-3 bg-zinc-900 border border-rose-500/50 text-rose-400 p-4 rounded-2xl shadow-2xl pointer-events-auto transition-all duration-300 opacity-0 translate-y-2 mb-2 animate-fade-in";
+            
+            if (type === 'success') {
+                toast.className = "flex items-center gap-3 bg-zinc-900 border border-green-500/50 text-green-400 p-4 rounded-2xl shadow-2xl pointer-events-auto transition-all duration-300 opacity-0 translate-y-2 mb-2 animate-fade-in";
+            }
+            
+            const icon = type === 'success' 
+                ? `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`
+                : `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
+
+            toast.innerHTML = `
+                <div class="flex-shrink-0">${icon}</div>
+                <div class="text-xs font-bold leading-normal">${sanitizeInput(message)}</div>
+            `;
+            
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.remove('opacity-0', 'translate-y-2');
+            }, 50);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3500);
+        }
+
+        // Sanitização de entradas contra ataques de injeção de script (Proteção total)
+        function sanitizeInput(str) {
+            return str.replace(/[&<>"']/g, function(match) {
+                const map = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#x27;'
+                };
+                return map[match];
+            });
+        }
+
+        // Validador de Chave Pix (CPF, Celular, E-mail e Chave Aleatória)
+        function isValidPixKey(key) {
+            const cleanKey = key.trim();
+            if (cleanKey.length === 0) return false;
+
+            const cpfRegex = /^\d{3}\.?\d{3}\.?\d{3}-?\d{2}$/;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/;
+            const uuidRegex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+
+            const numericOnly = cleanKey.replace(/\D/g, '');
+
+            if (cpfRegex.test(cleanKey) && numericOnly.length === 11) {
+                return { valid: true, type: 'CPF' };
+            }
+            if (emailRegex.test(cleanKey)) {
+                return { valid: true, type: 'E-mail' };
+            }
+            if (phoneRegex.test(cleanKey) && (numericOnly.length === 10 || numericOnly.length === 11)) {
+                return { valid: true, type: 'Celular' };
+            }
+            if (uuidRegex.test(cleanKey) || cleanKey.length === 32 || cleanKey.length === 36) {
+                return { valid: true, type: 'Chave Aleatória' };
+            }
+
+            return { valid: false, type: 'Desconhecido' };
+        }
+
+        // Validador de dados do TED Bancário
+        function isValidTedData(bank, agency, account) {
+            const cleanBank = bank.trim();
+            const cleanAgency = agency.trim().replace(/\D/g, '');
+            const cleanAccount = account.trim();
+
+            if (cleanBank.length < 3 || /^\d+$/.test(cleanBank)) {
+                return { valid: false, reason: 'Insira um nome de banco válido.' };
+            }
+            if (cleanAgency.length < 3 || cleanAgency.length > 5) {
+                return { valid: false, reason: 'A agência deve conter de 3 a 5 números.' };
+            }
+            if (cleanAccount.length < 4 || !/^[a-zA-Z0-9-]+$/.test(cleanAccount)) {
+                return { valid: false, reason: 'Insira um número de conta e dígito válidos.' };
+            }
+
+            return { valid: true };
+        }
+
+        // Escutadores de teclado para formatação monetária e máscaras interativas em tempo real
+        document.addEventListener('DOMContentLoaded', () => {
+            const rendaInput = document.getElementById('rendaInput');
+            const bankAgencyInput = document.getElementById('bankAgencyInput');
+            const bankNameInput = document.getElementById('bankNameInput');
+            const pixKeyInput = document.getElementById('pixKeyInput');
+
+            // Formatação Monetária interativa no campo de renda
+            rendaInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (!value) {
+                    e.target.value = '';
+                    return;
+                }
+                value = (parseFloat(value) / 100).toLocaleString('pt-BR', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                e.target.value = value;
+            });
+
+            // Máscara dinâmica interativa para Chave Pix baseada no formato inserido
+            pixKeyInput.addEventListener('input', (e) => {
+                let rawValue = e.target.value.replace(/\s/g, '');
+                
+                // Se for numérico, pode ser CPF ou Celular
+                if (/^\d+$/.test(rawValue.replace(/[-.()]/g, ''))) {
+                    let numbers = rawValue.replace(/\D/g, '');
+                    if (numbers.length <= 11) {
+                        // CPF Máscara
+                        if (numbers.length > 9) {
+                            e.target.value = numbers.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+                        } else if (numbers.length > 6) {
+                            e.target.value = numbers.replace(/(\d{3})(\d{3})(\d{3})/, "$1.$2.$3");
+                        } else if (numbers.length > 3) {
+                            e.target.value = numbers.replace(/(\d{3})(\d{3})/, "$1.$2");
+                        } else {
+                            e.target.value = numbers;
+                        }
+                    } else {
+                        // Celular Máscara
+                        if (numbers.length > 10) {
+                            e.target.value = numbers.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+                        } else {
+                            e.target.value = numbers.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
+                        }
+                    }
+                }
+            });
+
+            bankAgencyInput.addEventListener('input', (e) => {
+                e.target.value = e.target.value.replace(/\D/g, '');
+            });
+
+            bankNameInput.addEventListener('input', (e) => {
+                e.target.value = e.target.value.replace(/[0-9]/g, '');
+            });
+        });
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const content = document.getElementById('menuContent');
+            if (menu.classList.contains('invisible')) {
+                menu.classList.remove('invisible');
+                menu.querySelector('div').classList.replace('opacity-0', 'opacity-100');
+                content.classList.replace('translate-x-full', 'translate-x-0');
+            } else {
+                content.classList.replace('translate-x-0', 'translate-x-full');
+                menu.querySelector('div').classList.replace('opacity-100', 'opacity-0');
+                setTimeout(() => menu.classList.add('invisible'), 500);
+            }
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.classList.remove('hidden');
+            }
+            
+            // Lógica dinâmica para customizar a tela de sucesso se o cliente escolheu TED
+            if (pageId === 'success') {
+                const tedBox = document.getElementById('tedSuccessDetails');
+                const successTitle = document.getElementById('successTitle');
+                const successDesc = document.getElementById('successDesc');
+                
+                if (receivingMethod === 'ted') {
+                    successTitle.innerText = "TED AGENDADO COM SUCESSO!";
+                    successTitle.classList.add('text-pink-500');
+                    successDesc.innerText = "A Nascimento Solutions concluiu a estruturação da sua proposta. O valor está pronto para ser transferido!";
+                    
+                    const bank = sanitizeInput(document.getElementById('bankNameInput').value);
+                    const agency = sanitizeInput(document.getElementById('bankAgencyInput').value);
+                    const account = sanitizeInput(document.getElementById('bankAccountInput').value);
+                    
+                    document.getElementById('tedSuccessBank').innerText = bank;
+                    document.getElementById('tedSuccessAccount').innerText = "Agência: " + agency + " | Conta: " + account;
+                    tedBox.classList.remove('hidden');
+                } else {
+                    successTitle.innerText = "SOLICITAÇÃO RECEBIDA!";
+                    successTitle.classList.remove('text-pink-500');
+                    successDesc.innerText = "A Nascimento Solutions iniciou a auditoria e o processamento técnico do seu limite Tatiane Cred.";
+                    tedBox.classList.add('hidden');
+                }
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (!mobileMenu.classList.contains('invisible')) {
+                toggleMenu();
+            }
+        }
+
+        function scrollToFaq() {
+            showPage('landing');
+            setTimeout(() => {
+                const element = document.getElementById('faqSection');
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        }
+
+        function toggleFaq(index) {
+            const answer = document.getElementById(`faqAnswer-${index}`);
+            const icon = document.getElementById(`faqIcon-${index}`);
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                answer.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function processAI() {
+            const rendaInputRaw = document.getElementById('rendaInput').value;
+            const rendaNumeric = parseFloat(rendaInputRaw.replace(/\./g, '').replace(',', '.'));
+
+            if (!rendaInputRaw || isNaN(rendaNumeric) || rendaNumeric <= 0) {
+                showToast("Por favor, digite uma renda mensal líquida válida maior que zero.");
+                return;
+            }
+
+            const btnText = document.getElementById('btnText');
+            const btnLoader = document.getElementById('btnLoader');
+            
+            btnText.innerText = "ANALISANDO...";
+            btnLoader.classList.remove('hidden');
+
+            setTimeout(() => {
+                const valorCalculado = rendaNumeric * 4.2;
+                document.getElementById('valorOferta').innerText = "R$ " + valorCalculado.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                btnText.innerText = "PROCESSAR COM IA";
+                btnLoader.classList.add('hidden');
+                showPage('offer');
+            }, 1500);
+        }
+
+        function selectMethod(method) {
+            receivingMethod = method;
+            
+            document.querySelectorAll('.method-card').forEach(card => {
+                card.classList.remove('border-pink-500', 'bg-pink-500/10');
+                card.classList.add('border-zinc-800', 'bg-zinc-900/60');
+            });
+            
+            const pixFields = document.getElementById('pixFields');
+            const tedFields = document.getElementById('tedFields');
+            
+            if (method === 'pix') {
+                pixFields.classList.remove('hidden');
+                tedFields.classList.add('hidden');
+                document.getElementById('cardPix').classList.add('border-pink-500', 'bg-pink-500/10');
+            } else if (method === 'ted') {
+                pixFields.classList.add('hidden');
+                tedFields.classList.remove('hidden');
+                document.getElementById('cardTed').classList.add('border-pink-500', 'bg-pink-500/10');
+            }
+        }
+
+        function confirmDestination() {
+            const checkoutSummary = document.getElementById('checkoutSummary');
+            
+            if (receivingMethod === 'pix') {
+                const pixKey = document.getElementById('pixKeyInput').value;
+                const checkPix = isValidPixKey(pixKey);
+
+                if (!checkPix.valid) {
+                    showToast("Formato de Chave Pix inválido! Verifique se introduziu um CPF, E-mail ou Telemóvel válido.");
+                    return;
+                }
+                
+                const sanitizedPixKey = sanitizeInput(pixKey);
+                checkoutSummary.innerHTML = `
+                    <p class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Destino do Crédito:</p>
+                    <p class="font-bold text-white text-sm">Pix (${checkPix.type}) / Chave: <span class="text-pink-500">${sanitizedPixKey}</span></p>
+                `;
+
+                // Log de Dados de Captura (Inovação para CRM / SDR)
+                console.log("[Lead Capturado para SDR/BDR]: Pix Key - " + sanitizedPixKey);
+                
+            } else if (receivingMethod === 'ted') {
+                const bank = document.getElementById('bankNameInput').value;
+                const agency = document.getElementById('bankAgencyInput').value;
+                const account = document.getElementById('bankAccountInput').value;
+                
+                const checkTed = isValidTedData(bank, agency, account);
+
+                if (!checkTed.valid) {
+                    showToast(checkTed.reason);
+                    return;
+                }
+                
+                const sanitizedBank = sanitizeInput(bank);
+                const sanitizedAgency = sanitizeInput(agency);
+                const sanitizedAccount = sanitizeInput(account);
+
+                checkoutSummary.innerHTML = `
+                    <p class="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Destino do Crédito:</p>
+                    <p class="font-bold text-white text-sm">TED / Banco: <span class="text-pink-500">${sanitizedBank}</span></p>
+                    <p class="text-white text-xs">Agência: ${sanitizedAgency} | Conta: ${sanitizedAccount}</p>
+                `;
+
+                // Log de Dados de Captura (Inovação para CRM / SDR)
+                console.log("[Lead Capturado para SDR/BDR]: TED Banco - " + sanitizedBank + ", Agência - " + sanitizedAgency + ", Conta - " + sanitizedAccount);
+            }
+            showPage('checkout');
+        }
+
+        function copyPix() {
+            const el = document.createElement('textarea');
+            el.value = "tatianen25@gmail.com";
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            showToast("Chave Pix de Adesão copiada com sucesso!", "success");
+            setTimeout(() => {
+                showPage('pix_success');
+            }, 600);
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backToTop');
+            if (window.scrollY > 400) {
+                btn.classList.remove('hidden');
+            } else {
+                btn.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
